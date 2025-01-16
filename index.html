@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxured's Custom ROMs - Poco X6 Pro</title>
+    <style>
+      @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px rgba(78, 205, 196, 0.2));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(78, 205, 196, 0.4));
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a1a, #0a0a0a, #1a1a1a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -1;
+        }
+
+        .builder-tag {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            background-size: 200% 200%;
+            animation: gradientAnimation 3s ease infinite;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rom-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInFromBottom 0.5s ease forwards;
+        }
+
+        .rom-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .rom-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .rom-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .rom-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            background-size: 200% 200%;
+            animation: gradientAnimation 3s ease infinite;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .download-item {
+            background: #222;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-item::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .download-item:hover::before {
+            top: 100%;
+            left: 100%;
+        }
+
+        .phone-container {
+            position: relative;
+            width: 400px;
+            animation: float 6s ease-in-out infinite, glowPulse 4s ease-in-out infinite;
+        }
+
+        .archived-rom-item {
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideInFromLeft 0.5s ease forwards;
+        }
+
+        .archived-rom-item:nth-child(1) {
+            animation-delay: 0.8s;
+        }
+
+        .archived-rom-item:nth-child(2) {
+            animation-delay: 1s;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .builder-tag {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .phone-container {
+            position: relative;
+            width: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .phone-image {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.3));
+        }
+
+        .rom-section {
+            padding: 5rem 10%;
+        }
+
+        .rom-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .rom-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .rom-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(78, 205, 196, 0.2));
+        }
+
+        .rom-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: #4ecdc4;
+        }
+
+        .rom-credits {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .download-item {
+            background: #222;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+        }
+
+        .download-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        .release-date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .unmaintained {
+            background: #1a1a1a88;
+            border: 1px solid #333;
+        }
+
+        .archived-roms {
+            margin-top: 2rem;
+        }
+
+        .archived-rom-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #222;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .archived-rom-item:hover {
+            transform: translateX(5px);
+            background: #2a2a2a;
+        }
+
+        .archived-rom-item h3 {
+            color: #888;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .archive-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4ecdc4;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .archive-link:hover {
+            color: #ff6b6b;
+        }
+
+        .archive-link svg {
+            transition: all 0.3s ease;
+        }
+
+        .archive-link:hover svg {
+            transform: translateX(2px) translateY(-2px);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .phone-container {
+                margin-top: 2rem;
+                width: 80%;
+                max-width: 300px;
+            }
+
+            .rom-header {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="builder-tag">Built by Luxured</div>
+            <h1>Poco X6 Pro</h1>
+            <p>Experience two of the finest custom ROMs for your Poco X6 Pro, exclusively built and maintained by Luxured. Get the perfect balance of performance, battery life, and customization with these carefully crafted builds.</p>
+        </div>
+        <div class="phone-container">
+            <img src="https://cellularkenya.co.ke/wp-content/uploads/2024/01/Xiaomi-Poco-X6-Pro-e1705658605816.png" alt="Poco X6 Pro" class="phone-image">
+        </div>
+    </div>
+
+    <div class="rom-section">
+        <div class="rom-card">
+            <div class="rom-header">
+                <img src="https://i.imgur.com/iWJpLZR.png" alt="AlphaDroid Logo" class="rom-logo">
+                <h2>AlphaDroid ROM</h2>
+            </div>
+            <p>Official AlphaDroid ROM for Poco X6 Pro, built and maintained by Luxured</p>
+            <div class="rom-credits">Maintained by Luxured</div>
+            <div class="release-date">Latest Release: January 12, 2025</div>
+            <div class="download-grid">
+                <div class="download-item">
+                    <h3>ROM Package</h3>
+                    <a href="https://pixeldrain.com/l/pF8tWwSA" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>vendor_boot.img</h3>
+                    <a href="https://pixeldrain.com/l/pF8tWwSA" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>init_boot.img</h3>
+                    <a href="https://pixeldrain.com/l/pF8tWwSA" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>boot.img</h3>
+                    <a href="https://pixeldrain.com/l/pF8tWwSA" class="download-btn">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="rom-card">
+            <div class="rom-header">
+                <img src="https://i.imgur.com/xMXkBpv.png" alt="ProjectMatrixx Logo" class="rom-logo">
+                <h2>ProjectMatrixx ROM</h2>
+            </div>
+            <p>Official ProjectMatrixx ROM for Poco X6 Pro, built and maintained by Luxured</p>
+            <div class="rom-credits">Maintained by Luxured</div>
+            <div class="release-date">Latest Release: January 15, 2025</div>
+            <div class="download-grid">
+                <div class="download-item">
+                    <h3>ROM Package</h3>
+                    <a href="https://sourceforge.net/projects/matrixduchamp/files/" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>vendor_boot.img</h3>
+                    <a href="https://sourceforge.net/projects/matrixduchamp/files/" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>init_boot.img</h3>
+                    <a href="https://sourceforge.net/projects/matrixduchamp/files/" class="download-btn">Download</a>
+                </div>
+                <div class="download-item">
+                    <h3>boot.img</h3>
+                    <a href="https://sourceforge.net/projects/matrixduchamp/files/" class="download-btn">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="rom-card unmaintained">
+            <h2>Unmaintained ROMs</h2>
+            <p>Previous ROM builds that are no longer actively maintained. These builds are provided as-is for reference.</p>
+            
+            <div class="archived-roms">
+                <div class="archived-rom-item">
+                    <h3>BlissOS Voyager</h3>
+                    <a href="#" class="archive-link">
+                        <span>View Files</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="archived-rom-item">
+                    <h3>RisingOS 6.2</h3>
+                    <a href="#" class="archive-link">
+                        <span>View Files</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
