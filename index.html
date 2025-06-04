@@ -17,7 +17,7 @@
 <!-- Twitter Card Tags -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Built By Luxured - Custom ROMs for Poco X6 Pro" />
-<meta name="twitter:description" content="Download the best custom ROMs for your Poco X6 Pro (duchamp) including ThePixelProject, ProjectMatrixx, and AlphaDroid. All files included for complete installation." />
+<meta name="twitter:description" content="Download the best custom ROMs for your Poco X6 Pro (duchamp) including ThePixelProject, ProjectMatrixx, AlphaDroid and other ROMs including vendor_boot, init_boot, and boot files." />
 <meta name="twitter:image" content="https://i.imgur.com/psg9XuT.jpeg" />
 
 <!-- Additional Meta Tags for SEO -->
@@ -86,6 +86,13 @@
             margin-bottom: 1.5rem;
             box-shadow: 0 0 30px rgba(140, 82, 255, 0.6);
             animation: rotate 4s linear infinite;
+            overflow: hidden;
+        }
+        
+        .rotating-circle img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
         }
         
         @keyframes rotate {
@@ -218,9 +225,9 @@
             transform: translateY(0);
         }
         
-        .rom-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        .rom-list {
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -232,9 +239,11 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.5s ease;
             transform-style: preserve-3d;
-            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
             opacity: 0;
             transform: translateY(50px);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         
         .rom-card.visible {
@@ -243,23 +252,36 @@
         }
         
         .rom-card:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 15px 30px rgba(92, 225, 230, 0.3);
+        }
+        
+        .rom-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
         }
         
         .rom-logo {
             width: 80px;
             height: 80px;
-            margin: 0 auto 1rem;
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             font-weight: bold;
             color: var(--light);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+        
+        .rom-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 50%;
         }
         
         .rom-logo.pixel {
@@ -274,22 +296,23 @@
             background: linear-gradient(145deg, #ff5722, #ff9800);
         }
         
+        .rom-details {
+            flex: 1;
+        }
+        
         .rom-name {
             font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             position: relative;
             display: inline-block;
-            text-align: center;
-            width: 100%;
         }
         
         .rom-name::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -3px;
+            left: 0;
             width: 50%;
             height: 3px;
             background: linear-gradient(90deg, var(--primary), transparent);
@@ -298,18 +321,15 @@
         .last-update {
             font-size: 0.9rem;
             color: var(--secondary);
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            justify-content: center;
         }
         
         .button-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
-            margin-top: 1.5rem;
         }
         
         .btn {
@@ -328,6 +348,7 @@
             overflow: hidden;
             z-index: 1;
             display: inline-block;
+            white-space: nowrap;
         }
         
         .btn::before {
@@ -348,7 +369,7 @@
         }
         
         .btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(92, 225, 230, 0.3);
             color: white;
         }
@@ -362,13 +383,10 @@
         }
         
         .older-releases {
-            margin-top: 1.5rem;
-            text-align: center;
+            margin-top: 1rem;
         }
         
         .older-releases .btn {
-            display: inline-block;
-            width: 100%;
             background: linear-gradient(145deg, rgba(19, 23, 34, 0.7), rgba(10, 13, 20, 0.7));
             backdrop-filter: blur(5px);
         }
@@ -448,12 +466,23 @@
         
         /* Responsive design */
         @media screen and (max-width: 768px) {
-            .rom-grid {
-                grid-template-columns: 1fr;
+            .rom-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .rom-info {
+                flex-direction: column;
+                text-align: center;
             }
             
             .button-group {
-                grid-template-columns: 1fr;
+                justify-content: center;
+            }
+            
+            .btn {
+                flex: 1;
+                min-width: 120px;
             }
             
             h1 {
@@ -472,6 +501,11 @@
                 width: 80px;
                 height: 80px;
                 font-size: 2rem;
+            }
+            
+            .rotating-circle img {
+                width: 50px;
+                height: 50px;
             }
         }
         
@@ -548,7 +582,9 @@
 <body>
     <div id="splash-screen">
         <div class="splash-logo-container">
-            <div class="rotating-circle">LX</div>
+            <div class="rotating-circle">
+                <img src="https://i.imgur.com/jJfOoNL.png" alt="Luxured Logo">
+            </div>
             <div id="splash-logo">Built By Luxured</div>
         </div>
         <div id="loader"></div>
@@ -569,13 +605,19 @@
         <div class="rom-section">
             <h2 class="section-title" data-animate="true">Maintained ROMs</h2>
             
-            <div class="rom-grid">
+            <div class="rom-list">
                 
                 <div class="rom-card" data-animate="true">
-                    <img src="https://i.imgur.com/j2nBanL.png" alt="TPP Logo" class="rom-logo pixel">
-                    <h3 class="rom-name">ThePixelProject</h3>
-                    <div class="last-update">
-                        <i class="fas fa-clock"></i> Last update: May 09, 2025
+                    <div class="rom-info">
+                        <div class="rom-logo pixel">
+                            <img src="https://i.imgur.com/j2nBanL.png" alt="TPP Logo">
+                        </div>
+                        <div class="rom-details">
+                            <h3 class="rom-name">ThePixelProject</h3>
+                            <div class="last-update">
+                                <i class="fas fa-clock"></i> Last update: May 09, 2025
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="button-group">
@@ -584,17 +626,19 @@
                         <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
                         <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
                     </div>
-                    
-                    <div class="older-releases">
-                        <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/" class="btn"><i class="fas fa-history"></i> Older Releases</a>
-                    </div>
                 </div>
 
                 <div class="rom-card" data-animate="true">
-                    <img src="https://i.imgur.com/MpUiFtg.png" alt="Matrix Logo" class="rom-logo matrix">
-                    <h3 class="rom-name">ProjectMatrixx</h3>
-                    <div class="last-update">
-                        <i class="fas fa-clock"></i> Last update: May 19, 2025
+                    <div class="rom-info">
+                        <div class="rom-logo matrix">
+                            <img src="https://i.imgur.com/MpUiFtg.png" alt="Matrix Logo">
+                        </div>
+                        <div class="rom-details">
+                            <h3 class="rom-name">ProjectMatrixx</h3>
+                            <div class="last-update">
+                                <i class="fas fa-clock"></i> Last update: May 19, 2025
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="button-group">
@@ -603,35 +647,40 @@
                         <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
                         <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
                     </div>
-                    
-                    <div class="older-releases">
-                        <a href="https://sourceforge.net/projects/matrixduchamp/files/" class="btn"><i class="fas fa-history"></i> Older Releases</a>
-                    </div>
                 </div>
                 
                 <div class="rom-card" data-animate="true">
-                    <img src="https://i.imgur.com/nhGJUeF.png" alt="TPP Logo" class="rom-logo alpha">
-                    <h3 class="rom-name">AlphaDroid</h3>
-                    <div class="last-update">
-                        <i class="fas fa-clock"></i> Last update: March 13, 2025
+                    <div class="rom-info">
+                        <div class="rom-logo alpha">
+                            <img src="https://i.imgur.com/nhGJUeF.png" alt="Alpha Logo">
+                        </div>
+                        <div class="rom-details">
+                            <h3 class="rom-name">AlphaDroid</h3>
+                            <div class="last-update">
+                                <i class="fas fa-clock"></i> Last update: March 13, 2025
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="button-group">
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/AlphaDroid-15.1-20250313-gapps-duchamp-v3.1.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/vendor_boot.img/download" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                    
-                    <div class="older-releases">
-                        <a href="https://pixeldrain.com/l/pF8tWwSA" class="btn"><i class="fas fa-history"></i> Older Releases</a>
+                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/YAAP-15-Extended-Homemade-duchamp-20250604.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
+                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/vendor_boot.img/download" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
+                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
+                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
                     </div>
                 </div>
-                               <div class="rom-card" data-animate="true">
-                    <img src="https://i.imgur.com/Mti7rJ0.png" alt="HorizonLogo" class="rom-logo Horizon">
-                    <h3 class="rom-name">HorizonDroid</h3>
-                    <div class="last-update">
-                        <i class="fas fa-clock"></i> Last update: May 25, 2025
+
+                <div class="rom-card" data-animate="true">
+                    <div class="rom-info">
+                        <div class="rom-logo">
+                            <img src="https://i.imgur.com/Mti7rJ0.png" alt="Horizon Logo">
+                        </div>
+                        <div class="rom-details">
+                            <h3 class="rom-name">HorizonDroid</h3>
+                            <div class="last-update">
+                                <i class="fas fa-clock"></i> Last update: May 25, 2025
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="button-group">
@@ -640,9 +689,28 @@
                         <a href="https://pixeldrain.com/u/8NqoU5X6" class="btn"><i class="fas fa-download"></i> Init_boot</a>
                         <a href="https://pixeldrain.com/u/AhsGvWfL" class="btn"><i class="fas fa-download"></i> Boot</a>
                     </div>
-                    
                 </div>
                 
+                <div class="rom-card" data-animate="true">
+                    <div class="rom-info">
+                        <div class="rom-logo">
+                            <img src="https://i.imgur.com/DFE4VuO.png" alt="YAAP Logo">
+                        </div>
+                        <div class="rom-details">
+                            <h3 class="rom-name">YAAP</h3>
+                            <div class="last-update">
+                                <i class="fas fa-clock"></i> Last update: June 04, 2025
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <a href="https://pixeldrain.com/u/QPBAsp6N" class="btn"><i class="fas fa-download"></i> ROM</a>
+                        <a href="https://pixeldrain.com/u/ZuHSfNWu" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
+                        <a href="https://pixeldrain.com/u/8NqoU5X6" class="btn"><i class="fas fa-download"></i> Init_boot</a>
+                        <a href="https://pixeldrain.com/u/AhsGvWfL" class="btn"><i class="fas fa-download"></i> Boot</a>
+                    </div>
+                </div>
             </div>
         </div>
         
