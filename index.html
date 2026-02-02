@@ -3,818 +3,713 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Built By Luxured</title>
-<!-- Basic Meta Tags -->
-<meta property="og:title" content="Built By Luxured - Custom ROMs for Poco X6 Pro (duchamp)" />
-<meta property="og:description" content="Download the best custom ROMs for your Poco X6 Pro (duchamp) including ThePixelProject, ProjectMatrixx, and AlphaDroid. Get ROMs, vendor_boot, init_boot, and boot files." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://snapboss.github.io/" />
-<meta property="og:image" content="https://i.imgur.com/psg9XuT.jpeg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:site_name" content="Built By Luxured" />
-
-<!-- Twitter Card Tags -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Built By Luxured - Custom ROMs for Poco X6 Pro" />
-<meta name="twitter:description" content="Download the best custom ROMs for your Poco X6 Pro (duchamp) including ThePixelProject, ProjectMatrixx, AlphaDroid and other ROMs including vendor_boot, init_boot, and boot files." />
-<meta name="twitter:image" content="https://i.imgur.com/psg9XuT.jpeg" />
-
-<!-- Additional Meta Tags for SEO -->
-<meta name="description" content="Custom ROM collection for Poco X6 Pro (duchamp). Download ThePixelProject, ProjectMatrixx, AlphaDroid and other ROMs including vendor_boot, init_boot, and boot files." />
-<meta name="keywords" content="Poco X6 Pro, duchamp, custom ROM, ThePixelProject, ProjectMatrixx, AlphaDroid, vendor_boot, init_boot, boot" />
-<meta name="author" content="Luxured" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Luxured Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8c52ff;
-            --secondary: #5ce1e6;
-            --dark: #0d1117;
-            --light: #f6f8fa;
-            --accent: #ff7edb;
+            --bg-primary: #0a0e27;
+            --bg-secondary: #141b3d;
+            --accent-cyan: #00ffcc;
+            --accent-magenta: #ff006e;
+            --accent-yellow: #ffbe0b;
+            --text-primary: #e8f4f8;
+            --text-secondary: #8892b0;
+            --border-color: #1e2a5e;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
             overflow-x: hidden;
-            scroll-behavior: smooth;
-            perspective: 1000px;
         }
-        
+
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: var(--dark);
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 50%, #ffa500 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 10000;
             transition: opacity 0.5s ease-out;
         }
-        
-        .splash-logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
+
+        #splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
-        
-        .rotating-circle {
-            width: 100px;
-            height: 100px;
+
+        .dragon-ball-container {
+            position: relative;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .dragon-ball {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, #ffeb3b, #ff9800);
             border-radius: 50%;
-            background: linear-gradient(145deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            box-shadow: 
+                0 0 40px rgba(255, 152, 0, 0.8),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.2),
+                inset 20px 20px 40px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .dragon-ball:hover {
+            transform: scale(1.1);
+        }
+
+        .dragon-ball::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+        }
+
+        .star::before {
+            content: '★';
+            font-size: 80px;
+            color: #d32f2f;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(211, 47, 47, 0.6);
+            display: block;
+            animation: pulse-star 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-star {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.95); }
+        }
+
+        .splash-text {
+            margin-top: 3rem;
+            font-family: 'Staatliches', cursive;
             font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--light);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 30px rgba(140, 82, 255, 0.6);
-            animation: rotate 4s linear infinite;
+            color: white;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 152, 0, 0.8);
+            animation: glow-text 2s ease-in-out infinite;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes glow-text {
+            0%, 100% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 152, 0, 0.8); }
+            50% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 152, 0, 1); }
+        }
+
+        #main-content {
+            display: none;
+            min-height: 100vh;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.03) 2px, rgba(0, 255, 204, 0.03) 4px),
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 204, 0.1) 0%, transparent 50%);
+        }
+
+        #main-content.visible {
+            display: block;
+        }
+
+        .header {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--border-color);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
             overflow: hidden;
         }
-        
-        .rotating-circle img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 204, 0.02) 10px,
+                rgba(0, 255, 204, 0.02) 20px
+            );
+            animation: slide 20s linear infinite;
         }
-        
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
-        
-        #splash-logo {
+
+        .header h1 {
+            font-family: 'Staatliches', cursive;
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-magenta) 50%, var(--accent-yellow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
             position: relative;
-            font-size: 3.5rem;
-            color: var(--primary);
-            font-weight: bold;
-            transform-style: preserve-3d;
-            animation: logo-animate 3s ease-in-out forwards;
+            animation: glow 3s ease-in-out infinite;
         }
-        
-        @keyframes logo-animate {
-            0% {
-                transform: translateY(-30px);
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 0, 110, 0.7)); }
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(0, 255, 204, 0.2);
+        }
+
+        .project-card h3 {
+            font-family: 'Staatliches', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .meta-item {
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 30px 60px rgba(0, 255, 204, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
                 opacity: 0;
             }
-            30% {
+            to {
                 transform: translateY(0);
                 opacity: 1;
             }
-            70% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(0) scale(1.1);
-                opacity: 1;
-            }
         }
-        
-        #splash-logo::after {
-            content: '';
+
+        .close-btn {
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
-            animation: line-animate 2s ease-in-out 1s forwards;
-        }
-        
-        @keyframes line-animate {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-        
-        #loader {
-            width: 150px;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        #loader::after {
-            content: '';
-            display: block;
-            width: 30%;
-            height: 100%;
-            background-color: var(--secondary);
-            border-radius: 10px;
-            animation: loading 2s ease-in-out infinite;
-        }
-        
-        @keyframes loading {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(350%); }
-        }
-        
-        header {
-            padding: 1.5rem;
-            text-align: center;
-            background-color: rgba(13, 17, 23, 0.8);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        header.hidden {
-            transform: translateY(-100%);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(140, 82, 255, 0.5);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8rem 1rem 2rem;
-        }
-        
-        .rom-section {
-            margin-top: 2rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: var(--accent);
-            margin: 3rem 0 2rem;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .rom-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .rom-card {
-            background: linear-gradient(145deg, #131722, #0a0d14);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease;
-            transform-style: preserve-3d;
-            opacity: 0;
-            transform: translateY(50px);
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .rom-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .rom-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(92, 225, 230, 0.3);
-        }
-        
-        .rom-info {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex: 1;
-        }
-        
-        .rom-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--accent-magenta);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            background: var(--accent-yellow);
+        }
+
+        .modal-header h2 {
+            font-family: 'Staatliches', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .file-browser {
+            margin-top: 2rem;
+        }
+
+        .file-item, .folder-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--light);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            gap: 1rem;
+        }
+
+        .file-item:hover, .folder-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(8px);
+            background: rgba(0, 255, 204, 0.05);
+        }
+
+        .folder-item {
+            border-left: 4px solid var(--accent-yellow);
+        }
+
+        .file-item {
+            border-left: 4px solid var(--accent-magenta);
+        }
+
+        .icon {
+            font-size: 1.5rem;
             flex-shrink: 0;
         }
-        
-        .rom-logo img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border-radius: 50%;
-        }
-        
-        .rom-logo.pixel {
-            background: linear-gradient(145deg, #4285f4, #34a853);
-        }
-        
-        .rom-logo.matrix {
-            background: linear-gradient(145deg, #00bcd4, #673ab7);
-        }
-        
-        .rom-logo.alpha {
-            background: linear-gradient(145deg, #ff5722, #ff9800);
-        }
-        
-        .rom-details {
+
+        .file-name {
             flex: 1;
+            font-weight: 700;
+            color: var(--text-primary);
         }
-        
-        .rom-name {
-            font-size: 1.5rem;
-            color: var(--primary);
+
+        .info-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 190, 11, 0.1);
+            border: 1px solid rgba(255, 190, 11, 0.3);
+            border-radius: 8px;
+        }
+
+        .info-box p {
+            color: var(--accent-yellow);
             margin-bottom: 0.5rem;
-            position: relative;
-            display: inline-block;
+            font-weight: 700;
         }
-        
-        .rom-name::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 50%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-        }
-        
-        .last-update {
+
+        .info-box span {
             font-size: 0.9rem;
-            color: var(--secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
         }
-        
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .btn {
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(145deg, #131722, #0a0d14);
-            color: var(--light);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+
+        .empty-state {
             text-align: center;
-            text-decoration: none;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            display: inline-block;
-            white-space: nowrap;
+            padding: 3rem;
+            color: var(--text-secondary);
         }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
+
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
-        
-        .btn:hover::before {
-            opacity: 1;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(92, 225, 230, 0.3);
-            color: white;
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .btn i {
-            margin-right: 0.5rem;
-        }
-        
-        .older-releases {
-            margin-top: 1rem;
-        }
-        
-        .older-releases .btn {
-            background: linear-gradient(145deg, rgba(19, 23, 34, 0.7), rgba(10, 13, 20, 0.7));
-            backdrop-filter: blur(5px);
-        }
-        
-        .unmaintained-section {
-            margin-top: 4rem;
-            padding: 2rem;
-            border-radius: 12px;
-            background: linear-gradient(145deg, rgba(19, 23, 34, 0.8), rgba(10, 13, 20, 0.8));
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .unmaintained-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .unmaintained-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            justify-content: center;
-        }
-        
-        .unmaintained-item {
-            background: linear-gradient(145deg, #131722, #0a0d14);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            color: var(--light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .unmaintained-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 126, 219, 0.3);
-            color: var(--accent);
-        }
-        
-        footer {
-            padding: 2rem 1rem;
-            text-align: center;
-            background-color: rgba(13, 17, 23, 0.6);
-            margin-top: 4rem;
-            backdrop-filter: blur(10px);
-        }
-        
-        footer p {
-            color: var(--light);
-            opacity: 0.7;
-        }
-        
-        .footer-brand {
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* Animations for 3D effect */
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* Responsive design */
-        @media screen and (max-width: 768px) {
-            .rom-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .rom-info {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .button-group {
-                justify-content: center;
-            }
-            
-            .btn {
-                flex: 1;
-                min-width: 120px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            #splash-logo {
+
+        @media (max-width: 768px) {
+            .header h1 {
                 font-size: 2.5rem;
             }
-            
-            .rotating-circle {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
+
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .rotating-circle img {
-                width: 50px;
-                height: 50px;
+
+            .modal-content {
+                padding: 2rem;
             }
-        }
-        
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            animation: bounce 2s infinite;
-        }
-        
-        .scroll-indicator.hidden {
-            opacity: 0;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-20px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-        }
-        
-        /* Cube 3D background effect */
-        .background-cubes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            opacity: 0.3;
-        }
-        
-        .cube {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(140, 82, 255, 0.3);
-            animation: cube-animate 25s linear infinite;
-            border-radius: 8px;
-            backdrop-filter: blur(3px);
-        }
-        
-        .cube:nth-child(even) {
-            background: rgba(92, 225, 230, 0.3);
-        }
-        
-        .cube:nth-child(3n) {
-            background: rgba(255, 126, 219, 0.3);
-        }
-        
-        @keyframes cube-animate {
-            0% {
-                transform: translateY(calc(100vh + 100px)) translateX(calc(100vw * var(--i))) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(calc(100vw * var(--f))) rotate(calc(360deg * var(--r)));
-                opacity: 0;
+
+            .input-group {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
     <div id="splash-screen">
-        <div class="splash-logo-container">
-            <div class="rotating-circle">
-                <img src="https://i.imgur.com/jJfOoNL.png" alt="Luxured Logo">
+        <div class="dragon-ball-container" onclick="enterSite()">
+            <div class="dragon-ball">
+                <div class="star"></div>
             </div>
-            <div id="splash-logo">Built By Luxured</div>
         </div>
-        <div id="loader"></div>
+        <div class="splash-text">TAP TO ENTER</div>
     </div>
-    
-    <div class="background-cubes" id="bgCubes"></div>
-    
-    <div class="scroll-indicator" id="scrollIndicator">
-        <i class="fas fa-angle-double-down fa-2x" style="color: var(--secondary);"></i>
+
+    <div id="main-content">
+    <div class="header">
+        <h1>LUXURED</h1>
+        <p>SourceForge Project Archive</p>
     </div>
-    
-    <header id="header">
-        <h1>Built By Luxured</h1>
-        <p class="subtitle">Custom ROM Collection for POCO X6 Pro</p>
-    </header>
-    
+
     <div class="container">
-        <div class="rom-section">
-            <h2 class="section-title" data-animate="true">Maintained ROMs</h2>
-            
-            <div class="rom-list">
-                
-                <div class="rom-card" data-animate="true">
-                    <div class="rom-info">
-                        <div class="rom-logo pixel">
-                            <img src="https://i.imgur.com/j2nBanL.png" alt="TPP Logo">
-                        </div>
-                        <div class="rom-details">
-                            <h3 class="rom-name">ThePixelProject</h3>
-                            <div class="last-update">
-                                <i class="fas fa-clock"></i> Last update: May 09, 2025
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/PixelProject_duchamp-2.2-UNOFFICIAL-20250509-1015.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/vendor_boot.img/download" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://sourceforge.net/projects/pixel-project-duchamp/files/android15/09052025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                </div>
-
-                <div class="rom-card" data-animate="true">
-                    <div class="rom-info">
-                        <div class="rom-logo matrix">
-                            <img src="https://i.imgur.com/MpUiFtg.png" alt="Matrix Logo">
-                        </div>
-                        <div class="rom-details">
-                            <h3 class="rom-name">ProjectMatrixx</h3>
-                            <div class="last-update">
-                                <i class="fas fa-clock"></i> Last update: May 19, 2025
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/Matrixx-v11.5.0-Unofficial-duchamp-Gapps-20250519-1502.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/vendor_boot.img/download" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://sourceforge.net/projects/matrixduchamp/files/gapps/Android15/19052025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                </div>
-                
-                <div class="rom-card" data-animate="true">
-                    <div class="rom-info">
-                        <div class="rom-logo alpha">
-                            <img src="https://i.imgur.com/nhGJUeF.png" alt="Alpha Logo">
-                        </div>
-                        <div class="rom-details">
-                            <h3 class="rom-name">AlphaDroid</h3>
-                            <div class="last-update">
-                                <i class="fas fa-clock"></i> Last update: March 13, 2025
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/AlphaDroid-15.1-20250313-gapps-duchamp-v3.1.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/vendor_boot.img/download" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/init_boot.img/download" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://sourceforge.net/projects/alphadroidduchamp/files/Android15/gapps/13032025/boot.img/download" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                </div>
-
-                <div class="rom-card" data-animate="true">
-                    <div class="rom-info">
-                        <div class="rom-logo">
-                            <img src="https://i.imgur.com/Mti7rJ0.png" alt="Horizon Logo">
-                        </div>
-                        <div class="rom-details">
-                            <h3 class="rom-name">HorizonDroid</h3>
-                            <div class="last-update">
-                                <i class="fas fa-clock"></i> Last update: May 25, 2025
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="https://pixeldrain.com/u/QPBAsp6N" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://pixeldrain.com/u/ZuHSfNWu" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://pixeldrain.com/u/8NqoU5X6" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://pixeldrain.com/u/AhsGvWfL" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                </div>
-                
-                <div class="rom-card" data-animate="true">
-                    <div class="rom-info">
-                        <div class="rom-logo">
-                            <img src="https://i.imgur.com/DFE4VuO.png" alt="YAAP Logo">
-                        </div>
-                        <div class="rom-details">
-                            <h3 class="rom-name">YAAP</h3>
-                            <div class="last-update">
-                                <i class="fas fa-clock"></i> Last update: June 04, 2025
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/YAAP-15-Extended-Homemade-duchamp-20250604.zip/download" class="btn"><i class="fas fa-download"></i> ROM</a>
-                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/" class="btn"><i class="fas fa-download"></i> Vendor_boot</a>
-                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/" class="btn"><i class="fas fa-download"></i> Init_boot</a>
-                        <a href="https://sourceforge.net/projects/yaapduchamp/files/04062025/" class="btn"><i class="fas fa-download"></i> Boot</a>
-                    </div>
-                </div>
-            </div>
+        <div id="loading" class="loading" style="display: block;">
+            ⚡ LOADING PROJECTS FROM SOURCEFORGE...
         </div>
-        
-        <div class="unmaintained-section" data-animate="true">
-            <h2 class="section-title" style="margin-top: 0;" data-animate="true">Unmaintained ROMs</h2>
-            
-            <div class="unmaintained-list">
-                <a href="https://pixeldrain.com/l/Md9VvKRF" class="unmaintained-item">
-                    <i class="fas fa-archive"></i>TheCloverProject 2.4
-                </a>
-                <a href="https://pixeldrain.com/l/6tsdauhs" class="unmaintained-item">
-                    <i class="fas fa-archive"></i> BlissOS v18.1
-                </a>
-                <a href="https://pixeldrain.com/l/q2QGoHWp" class="unmaintained-item">
-                    <i class="fas fa-archive"></i> RisingOS 6.2
-                </a>
+        <div id="projects" class="projects-grid"></div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
             </div>
+            <div id="modal-body"></div>
         </div>
     </div>
-    
-    <footer>
-<p>© 2025 <a href="https://t.me/LuxuredAOSP" class="footer-brand">Built By Luxured</a>. All rights reserved.</p>    </footer>
-    
+    </div>
+
     <script>
-        window.addEventListener('load', () => {
-            document.body.style.height = '100vh';
-            document.body.style.overflow = 'hidden';
+        let audioPlayed = false;
+
+        function enterSite() {
+            const splash = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            if (!audioPlayed) {
+                const audio = new Audio('https://www.myinstants.com/media/sounds/fahhh_KcgAXfs.mp3');
+                audio.play().catch(err => console.log('Audio play failed:', err));
+                audioPlayed = true;
+            }
             
             setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
+                splash.classList.add('hidden');
+                mainContent.classList.add('visible');
                 setTimeout(() => {
                     splash.style.display = 'none';
-                    document.body.style.height = '';
-                    document.body.style.overflow = '';
                 }, 500);
-            }, 3000);
-        });
-        
-        const bgCubes = document.getElementById('bgCubes');
-        for (let i = 0; i < 15; i++) {
-            const cube = document.createElement('div');
-            cube.classList.add('cube');
+            }, 300);
+        }
 
-            const size = Math.random() * 50 + 30;
-            cube.style.width = `${size}px`;
-            cube.style.height = `${size}px`;
+        const USERNAME = 'tenxherepakapak';
+        let projects = [];
+
+        async function loadProjects() {
+            const loadingEl = document.getElementById('loading');
+            loadingEl.style.display = 'block';
             
-            cube.style.setProperty('--i', Math.random());
-            cube.style.setProperty('--f', Math.random());
-            cube.style.setProperty('--r', Math.random() * 5);
+            try {
+                const response = await fetch(`https://sourceforge.net/rest/u/${USERNAME}/profile`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.projects && data.projects.length > 0) {
+                        projects = data.projects.map(p => ({
+                            name: extractProjectName(p.url),
+                            title: p.name,
+                            summary: p.summary || 'SourceForge project',
+                            lastUpdated: p.last_updated
+                        }));
+                        loadingEl.style.display = 'none';
+                        displayProjects();
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching from API:', error);
+            }
             
-            cube.style.left = `${Math.random() * 100}%`;
-            cube.style.animationDuration = `${Math.random() * 20 + 15}s`;
-            cube.style.animationDelay = `${Math.random() * 5}s`;
-            
-            bgCubes.appendChild(cube);
+            const stored = localStorage.getItem('sourceforge_projects');
+            if (stored) {
+                projects = JSON.parse(stored);
+                loadingEl.style.display = 'none';
+                displayProjects();
+            } else {
+                loadingEl.style.display = 'none';
+                displayEmptyState();
+            }
         }
         
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        
-        const cards = document.querySelectorAll('.rom-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.03)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
+        function extractProjectName(url) {
+            const match = url.match(/\/p\/([^\/]+)/);
+            return match ? match[1] : url;
+        }
+
+        function saveProjects() {
+            localStorage.setItem('sourceforge_projects', JSON.stringify(projects));
+        }
+
+        function displayProjects() {
+            const container = document.getElementById('projects');
+
+            if (projects.length === 0) {
+                displayEmptyState();
+                return;
             }
-            lastScrollTop = scrollTop;
+
+            container.innerHTML = projects.map(project => `
+                <div class="project-card" onclick="openProject('${project.name}', '${escapeHtml(project.title)}')">
+                    <h3>${escapeHtml(project.title)}</h3>
+                    <p>${escapeHtml(project.summary)}</p>
+                    <div class="project-meta">
+                        <span class="meta-item">📦 ${project.name}</span>
+                        ${project.lastUpdated ? `<span class="meta-item">🕐 ${new Date(project.lastUpdated).toLocaleDateString()}</span>` : 
+                          project.addedDate ? `<span class="meta-item">🕐 ${new Date(project.addedDate).toLocaleDateString()}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayEmptyState() {
+            const container = document.getElementById('projects');
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="icon">📂</div>
+                    <h3>No projects found</h3>
+                    <p>User "${USERNAME}" has no public projects on SourceForge.</p>
+                </div>
+            `;
+        }
+
+        function openProject(projectName, projectTitle) {
+            document.getElementById('modal-title').textContent = projectTitle;
+            document.getElementById('modal').classList.add('active');
             
-            if (scrollTop > 100) {
-                scrollIndicator.classList.add('hidden');
-            } else {
-                scrollIndicator.classList.remove('hidden');
-            }
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="file-browser">
+                    <div class="folder-item" onclick="window.open('https://sourceforge.net/projects/${projectName}/files/', '_blank')">
+                        <span class="icon">📁</span>
+                        <span class="file-name">Browse All Files & Folders</span>
+                    </div>
+                    <div class="file-item" onclick="window.open('https://sourceforge.net/projects/${projectName}/files/latest/download', '_blank')">
+                        <span class="icon">⬇️</span>
+                        <span class="file-name">Download Latest Release</span>
+                    </div>
+                    <div class="file-item" onclick="loadRSSFiles('${projectName}')">
+                        <span class="icon">📡</span>
+                        <span class="file-name">View Recent Files</span>
+                    </div>
+                </div>
+                <div id="rss-content"></div>
+                <div class="info-box">
+                    <p>ℹ️ File Access</p>
+                    <span>SourceForge download speed might be slow depending on your region. To fix this you can either change the download server on SourceForge or use a VPN.</span>
+                </div>
+            `;
+        }
+
+        async function loadRSSFiles(projectName) {
+            const rssContent = document.getElementById('rss-content');
+            rssContent.innerHTML = '<div class="loading">⚡ LOADING FILES...</div>';
             
-            const animatedElements = document.querySelectorAll('[data-animate="true"]');
-            animatedElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            try {
+                const proxyUrl = 'https://api.allorigins.win/raw?url=';
+                const rssUrl = `https://sourceforge.net/projects/${projectName}/rss`;
+                const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
                 
-                if (rect.top <= windowHeight * 0.85) {
-                    el.classList.add('visible');
+                if (!response.ok) throw new Error('Failed to fetch');
+                
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                
+                const items = xml.querySelectorAll('item');
+                
+                if (items.length === 0) {
+                    rssContent.innerHTML = `
+                        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+                            <p>No recent files found</p>
+                        </div>
+                    `;
+                    return;
                 }
-            });
+                
+                let html = '<div style="margin-top: 2rem;"><h3 style="color: var(--accent-cyan); font-family: \'Staatliches\', cursive; font-size: 1.5rem; margin-bottom: 1rem;">Recent Files & Updates</h3><div class="file-browser">';
+                
+                items.forEach((item, index) => {
+                    if (index < 20) {
+                        const title = item.querySelector('title')?.textContent || 'Unknown';
+                        const link = item.querySelector('link')?.textContent || '';
+                        const pubDate = item.querySelector('pubDate')?.textContent || '';
+                        const description = item.querySelector('description')?.textContent || '';
+                        
+                        const date = pubDate ? new Date(pubDate).toLocaleDateString() : '';
+                        
+                        html += `
+                            <div class="file-item" onclick="window.open('${escapeHtml(link)}', '_blank')">
+                                <span class="icon">📄</span>
+                                <div style="flex: 1;">
+                                    <div class="file-name">${escapeHtml(title)}</div>
+                                    ${description ? `<div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">${escapeHtml(description.substring(0, 100))}${description.length > 100 ? '...' : ''}</div>` : ''}
+                                </div>
+                                ${date ? `<span class="file-size">${date}</span>` : ''}
+                            </div>
+                        `;
+                    }
+                });
+                
+                html += '</div></div>';
+                rssContent.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading files:', error);
+                rssContent.innerHTML = `
+                    <div style="padding: 2rem; background: rgba(255, 0, 110, 0.1); border: 2px solid var(--accent-magenta); border-radius: 8px; margin-top: 2rem;">
+                        <p style="color: var(--accent-magenta); font-weight: 700;">⚠️ Unable to load files</p>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.9rem;">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
-        
-        setTimeout(() => {
-            window.dispatchEvent(new Event('scroll'));
-        }, 3500);
+
+        loadProjects();
     </script>
 </body>
 </html>
